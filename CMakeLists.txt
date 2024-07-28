@@ -75,10 +75,10 @@ set(${PROJECT_NAME}_SOVERSION ${${PROJECT_NAME}_VERSION_MAJOR})
 
 include(FeatureSummary)
 
-option(${PROJECT_NAME}_QT6 "Build against Qt 6" OFF)
-option(${PROJECT_NAME}_STATIC "Build statically" OFF)
+option(${PROJECT_NAME}_QT6 "Build against Qt 6" ON)
+option(${PROJECT_NAME}_STATIC "Build statically" ON)
 option(${PROJECT_NAME}_TESTS "Build the tests" OFF)
-option(${PROJECT_NAME}_EXAMPLES "Build the examples" ON)
+option(${PROJECT_NAME}_EXAMPLES "Build the examples" OFF)
 option(${PROJECT_NAME}_DOCS "Build the API documentation" OFF)
 option(${PROJECT_NAME}_PYTHON_BINDINGS "Build python bindings" OFF)
 
@@ -86,7 +86,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/ECM/modules")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/KDAB/modules")
 
 # Set a default build type if none was specified
-set(default_build_type "Release")
+set(default_build_type "Debug")
 if(EXISTS "${CMAKE_SOURCE_DIR}/.git")
     set(default_build_type "Debug")
 endif()
