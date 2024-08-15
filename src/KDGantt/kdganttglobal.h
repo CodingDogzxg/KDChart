@@ -269,8 +269,12 @@ enum ItemDataRole
     TaskCompletionRole = KDGanttRoleBase + 3,
     ItemTypeRole = KDGanttRoleBase + 4,
     LegendRole = KDGanttRoleBase + 5,
-    TextPositionRole = KDGanttRoleBase + 6
+    TextPositionRole = KDGanttRoleBase + 6,
+
+    // customized roles
+    TaskStatusRole = KDGanttRoleBase + 7
 };
+
 enum ItemType
 {
     TypeNone = 0,
@@ -279,6 +283,14 @@ enum ItemType
     TypeSummary = 3,
     TypeMulti = 4,
     TypeUser = 1000
+};
+
+enum TaskStatus
+{
+    ToDo = 0,
+    Doing = 1,
+    Verifying = 2,
+    Done = 3
 };
 
 class Span

@@ -25,6 +25,9 @@ public:
 
     QHash<ItemType, QBrush> defaultbrush;
     QHash<ItemType, QPen> defaultpen;
+
+    QHash<TaskStatus, QBrush> customizeddefaultbrush;
+    QHash<TaskStatus, QPen> customizeddefaultpen;
 };
 }
 

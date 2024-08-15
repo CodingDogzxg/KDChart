@@ -41,6 +41,7 @@ public:
 
     void setDefaultBrush(ItemType type, const QBrush &brush);
     QBrush defaultBrush(ItemType type) const;
+    QBrush defaultBrush(TaskStatus status) const;
 
     void setDefaultPen(ItemType type, const QPen &pen);
     QPen defaultPen(ItemType type) const;

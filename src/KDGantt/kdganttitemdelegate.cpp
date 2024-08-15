@@ -78,6 +78,12 @@ ItemDelegate::Private::Private()
     defaultbrush[TypeSummary] = summarygrad;
     defaultbrush[TypeEvent] = eventgrad;
 
+    // customized brushes
+    customizeddefaultbrush[ToDo] = QBrush(QColor("#CAF0FC"));
+    customizeddefaultbrush[Doing] = QBrush(QColor("#ADE8F6"));
+    customizeddefaultbrush[Verifying] = QBrush(QColor("#90E0EF"));
+    customizeddefaultbrush[Done] = QBrush(QColor("#48CAE4"));
+
     // Pens
     QPen pen(Qt::black, 1.);
 
@@ -141,6 +147,15 @@ void ItemDelegate::setDefaultBrush(ItemType type, const QBrush &brush)
 QBrush ItemDelegate::defaultBrush(ItemType type) const
 {
     return d->defaultbrush[type];
+}
+
+/*!\returns The default brush for task status \a status
+ *
+ * \todo Move this to GraphicsView to make delegate stateless.
+ */
+QBrush ItemDelegate::defaultBrush(TaskStatus status) const
+{
+    return d->customizeddefaultbrush[status];
 }
 
 /*! Sets the default pen used for items of type \a type to
@@ -278,6 +293,7 @@ void ItemDelegate::paintGanttItem(QPainter *painter,
     if (!idx.isValid())
         return;
     const ItemType typ = static_cast<ItemType>(idx.model()->data(idx, ItemTypeRole).toInt());
+    const TaskStatus status = static_cast<TaskStatus>(idx.model()->data(idx, TaskStatusRole).toInt());
     const QString &txt = opt.text;
     QRectF itemRect = opt.itemRect;
     QRectF boundingRect = opt.boundingRect;
@@ -300,7 +316,8 @@ void ItemDelegate::paintGanttItem(QPainter *painter,
     switch (typ) {
     case TypeTask:
         if (itemRect.isValid()) {
-            // TODO
+            // override brush
+            painter->setBrush(defaultBrush(status));
             qreal pw = painter->pen().width() / 2.;
             pw -= 1;
             QRectF r = itemRect;
