@@ -67,8 +67,8 @@ ItemDelegate::Private::Private()
     taskgrad.setColorAt(1., Qt::darkGreen);
 
     QLinearGradient summarygrad(0., 0., 0., QApplication::fontMetrics().height());
-    summarygrad.setColorAt(0., Qt::blue);
-    summarygrad.setColorAt(1., Qt::darkBlue);
+    summarygrad.setColorAt(0., QColor("#BBDEFB"));
+    summarygrad.setColorAt(1., QColor("#BBDEFB"));
 
     QLinearGradient eventgrad(0., 0., 0., QApplication::fontMetrics().height());
     eventgrad.setColorAt(0., Qt::red);
