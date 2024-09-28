@@ -540,6 +540,16 @@ void GraphicsView::resizeEvent(QResizeEvent *ev)
     QGraphicsView::resizeEvent(ev);
 }
 
+void GraphicsView::wheelEvent(QWheelEvent *event)
+{
+    if (event->modifiers() & Qt::ShiftModifier) {
+        horizontalScrollBar()->setValue(horizontalScrollBar()->value() - event->angleDelta().y());
+        event->accept();
+    } else {
+        QGraphicsView::wheelEvent(event);
+    }
+}
+
 /*!\returns The QModelIndex for the item located at
  * position \a pos in the view or an invalid index
  * if no item was present at that position.

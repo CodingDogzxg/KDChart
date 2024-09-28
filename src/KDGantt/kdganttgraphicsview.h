@@ -97,6 +97,7 @@ Q_SIGNALS:
 
 protected:
     /*reimp*/ void resizeEvent(QResizeEvent *) override;
+    /*reimp*/ void wheelEvent(QWheelEvent *event) override;
 
 private:
     friend class View;

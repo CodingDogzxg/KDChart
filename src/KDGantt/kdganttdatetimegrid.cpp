@@ -920,6 +920,24 @@ void DateTimeGrid::paintHeader(QPainter *painter, const QRectF &headerRect, cons
     } break;
     }
     painter->restore();
+
+    painter->save();
+    int cornerRadius = 8;
+    QPainterPath path;
+    path.addRoundedRect(headerRect, cornerRadius, cornerRadius);
+
+    QPainterPath cornersPath;
+    cornersPath.addRect(headerRect);
+    QPainterPath sub = cornersPath.subtracted(path);
+
+    QPainterPath top;
+    top.addRect(headerRect.x(), headerRect.y(), headerRect.width(), headerRect.height() / 2);
+    
+    QPainterPath topCornered = sub.intersected(top);
+
+    painter->setRenderHint(QPainter::Antialiasing);
+    painter->fillPath(topCornered, QColor("#F0F0F0"));
+    painter->restore();
 }
 
 void DateTimeGrid::paintUserDefinedHeader(QPainter *painter,

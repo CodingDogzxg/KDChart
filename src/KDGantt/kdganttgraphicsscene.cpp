@@ -612,6 +612,24 @@ void GraphicsScene::drawBackground(QPainter *painter, const QRectF &_rect)
     d->grid->paintGrid(painter, scn, rect, d->rowController);
 
     d->grid->drawBackground(painter, rect);
+
+    painter->save();
+    int cornerRadius = 8;
+    QPainterPath path;
+    path.addRoundedRect(rect, cornerRadius, cornerRadius);
+
+    QPainterPath cornersPath;
+    cornersPath.addRect(rect);
+    QPainterPath sub = cornersPath.subtracted(path);
+
+    QPainterPath btm;
+    btm.addRect(rect.x(), rect.y() + rect.height() / 2, rect.width(), rect.height() / 2);
+
+    QPainterPath btmCornered = sub.intersected(btm);
+
+    painter->setRenderHint(QPainter::Antialiasing);
+    painter->fillPath(btmCornered, QColor("#F0F0F0"));
+    painter->restore();
 }
 
 void GraphicsScene::drawForeground(QPainter *painter, const QRectF &rect)
