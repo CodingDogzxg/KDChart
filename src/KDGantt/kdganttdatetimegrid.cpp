@@ -936,8 +936,13 @@ void DateTimeGrid::paintHeader(QPainter *painter, const QRectF &headerRect, cons
     QPainterPath topCornered = sub.intersected(top);
 
     painter->setRenderHint(QPainter::Antialiasing);
-    painter->fillPath(topCornered, QColor("#F0F0F0"));
+    painter->fillPath(topCornered, QColor(backgroundColor));
     painter->restore();
+}
+
+void DateTimeGrid::setBackgroundColor(const QString &color)
+{
+    backgroundColor = color;
 }
 
 void DateTimeGrid::paintUserDefinedHeader(QPainter *painter,

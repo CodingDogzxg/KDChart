@@ -631,6 +631,11 @@ void GraphicsView::updateScene()
         scene()->invalidate(QRectF(), QGraphicsScene::BackgroundLayer);
 }
 
+void GraphicsView::setBackgroundColor(const QString& color)
+{
+    d->scene.setBackgroundColor(color);
+}
+
 /*! \internal */
 GraphicsItem *GraphicsView::createItem(ItemType type) const
 {

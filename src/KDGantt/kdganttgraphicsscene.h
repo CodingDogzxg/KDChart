@@ -94,6 +94,8 @@ public:
     void print(QPainter *painter, const QRectF &target = QRectF(), bool drawRowLabels = true, bool drawColumnLabels = true);
     void print(QPainter *painter, qreal start, qreal end, const QRectF &target = QRectF(), bool drawRowLabels = true, bool drawColumnLabels = true);
 
+    void setBackgroundColor(const QString &color);
+
 Q_SIGNALS:
     void gridChanged();
 
@@ -125,6 +127,9 @@ private:
     void doPrint(QPainter *painter, const QRectF &targetRect,
                  qreal start, qreal end,
                  QPrinter *printer, bool drawRowLabels, bool drawColumnLabels);
+
+private:
+    QString backgroundColor = QString::fromStdString("#F0F0F0");
 };
 }
 

@@ -50,6 +50,8 @@ public:
     virtual void paintHeader(QPainter *painter, const QRectF &headerRect, const QRectF &exposedRect,
                              qreal offset, QWidget *widget = nullptr) = 0;
 
+    virtual void setBackgroundColor(const QString &color) = 0;
+
 public Q_SLOTS:
     /*internal*/ virtual void setModel(QAbstractItemModel *model);
     /*internal*/ virtual void setRootIndex(const QModelIndex &idx);

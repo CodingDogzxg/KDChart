@@ -628,7 +628,7 @@ void GraphicsScene::drawBackground(QPainter *painter, const QRectF &_rect)
     QPainterPath btmCornered = sub.intersected(btm);
 
     painter->setRenderHint(QPainter::Antialiasing);
-    painter->fillPath(btmCornered, QColor("#F0F0F0"));
+    painter->fillPath(btmCornered, QColor(backgroundColor));
     painter->restore();
 }
 
@@ -748,6 +748,16 @@ void GraphicsScene::print(QPainter *painter, qreal start, qreal end,
     }
 
     doPrint(painter, targetRect, start, end, nullptr, drawRowLabels, drawColumnLabels);
+}
+
+void GraphicsScene::setBackgroundColor(const QString &color)
+{
+    backgroundColor = color;
+    d->grid->setBackgroundColor(color);
+
+    std::string penColor = color == QString::fromStdString("#F0F0F0") ? "#000000" : "#EFEFEF";
+    d->itemDelegate->setDefaultPen(ItemType::TypeSummary, QPen(QColor(QString::fromStdString(penColor)), 1));
+    d->itemDelegate->setDefaultPen(ItemType::TypeTask, QPen(QColor(QString::fromStdString(penColor)), 1));
 }
 
 /*!\internal

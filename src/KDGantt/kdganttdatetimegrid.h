@@ -83,6 +83,8 @@ public:
                                const QRectF &headerRect, const QRectF &exposedRect,
                                qreal offset, QWidget *widget = nullptr) override;
 
+    /*reimp*/  void setBackgroundColor(const QString &color) override;
+
 protected:
     virtual void paintHourScaleHeader(QPainter *painter,
                                       const QRectF &headerRect, const QRectF &exposedRect,
@@ -110,6 +112,9 @@ protected:
 
     /* reimp */ void drawBackground(QPainter *paint, const QRectF &rect) override;
     /* reimp */ void drawForeground(QPainter *paint, const QRectF &rect) override;
+
+private:
+    QString backgroundColor = QString::fromStdString("#F0F0F0");
 };
 
 class KDGANTT_EXPORT DateTimeScaleFormatter

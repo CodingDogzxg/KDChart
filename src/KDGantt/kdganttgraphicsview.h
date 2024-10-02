@@ -64,6 +64,8 @@ public:
     void updateRow(const QModelIndex &);
     void updateScene();
 
+    void setBackgroundColor(const QString& color);
+
 public Q_SLOTS:
     void updateSceneRect();
 
